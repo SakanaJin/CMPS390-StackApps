@@ -1,15 +1,15 @@
-public class Stack {
+public class Stack<T> {
     private int top;
-    private char[] stack = new char[50];
+    private T[] stack = (T[])new Object[50]; //most unsafe thing I've done
     Stack(){
         top = -1;
     }
-    void push(char x){
+    void push(T x){
         top++;
         stack[top] = x;
     }
-    char pop(){
-        char y;
+    T pop(){
+        T y;
         y = stack[top];
         top--;
         return y;
