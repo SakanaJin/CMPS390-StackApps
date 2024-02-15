@@ -1,4 +1,6 @@
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.FileSystems;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 public class Main{
@@ -6,7 +8,8 @@ public class Main{
         String[] problems = new String[23];
         int i = 0;
         try {
-            File file = new File("C:\\Coding headaches\\CMPS 390\\CMPS390-StackApps\\buff.txt");
+            Path path = FileSystems.getDefault().getPath(new String("./")).toAbsolutePath().getParent();
+            File file = new File(path.toString() + "\\buff.txt");
             Scanner reader = new Scanner(file);
             while(reader.hasNextLine()){
                 problems[i] = reader.nextLine();
@@ -16,12 +19,11 @@ public class Main{
         }
         catch(FileNotFoundException e){
             System.out.println("Filepath does not exits");
-            e.fillInStackTrace();
         }
 
         System.out.println("Parentheses Check");
         for(i = 3; i < 6; i++){
-            System.out.println(validate(problems[i]));
+            System.out.println("valid: " + validate(problems[i]));
         }
 
         System.out.println("\nPostfix Evaluation");
